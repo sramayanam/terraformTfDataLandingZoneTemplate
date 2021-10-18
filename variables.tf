@@ -36,7 +36,7 @@ variable "key_vault_name" {
 variable "key_vault_resource_id" {
   type        = string
   description = "the resource id of the main key vault"
-  default     = "MyResourceGroup"
+  default     = "/subscriptions/3d60da7d-bacf-4c0f-9333-16143cd9da70/resourceGroups/rgTerraformLabs/providers/Microsoft.KeyVault/vaults/srramkv123"
 }
 variable "admin_pw_name" {
   type        = string
