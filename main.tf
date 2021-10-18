@@ -4,6 +4,7 @@ terraform {
     storage_account_name = "storagephswmdag"
     container_name       = "terraformstate"
     key                  = "prod.terraform.tfstate"
+    access_key           = ${{secrets.TF_ARM_ACCESS_KEY_SECRET}}
   }
 }
 
