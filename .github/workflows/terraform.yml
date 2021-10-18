@@ -16,7 +16,6 @@ jobs:
       ARM_CLIENT_SECRET: ${{secrets.TF_ARM_CLIENT_SECRET}}
       ARM_SUBSCRIPTION_ID: ${{secrets.TF_ARM_SUBSCRIPTION_ID_SECRET}}
       ARM_TENANT_ID: ${{secrets.TF_ARM_TENANTID_SECRET}}
-      ARM_ACCESS_KEY: ${{secrets.TF_ARM_ACCESS_KEY_SECRET}}
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
