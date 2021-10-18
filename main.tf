@@ -4,7 +4,7 @@ terraform {
     storage_account_name = "storagephswmdag"
     container_name       = "terraformstate"
     key                  = "prod.terraform.tfstate"
-    access_key           = "WXRMR3d4TS80N1BaOFdKd0R3MHM3MWRXUnpqc3Bmb1RvV2NzclFXSzhOb205aS8xZ3ZIMDBnV2NQSFZnWXFRLzVmM042OElzZ3lwMW9WektUZjhOZlE9PQ=="
+    use_azuread_auth     = true
   }
 }
 
