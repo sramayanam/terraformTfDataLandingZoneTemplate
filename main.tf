@@ -119,7 +119,7 @@ module "synapse" {
   }
   aad_admin = {
         login = "AzureAD Admin"
-        object_id = "e0ae2d70-3318-40bc-897b-e2a4ad85bd8f"
+        object_id = "df467aeb-68b5-4550-9a82-4979cb3a1abb"
         tenant_id = "50460471-2197-4938-8e96-0708f3384c45"
     }
  }
