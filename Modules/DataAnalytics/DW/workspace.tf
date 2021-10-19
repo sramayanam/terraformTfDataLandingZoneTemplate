@@ -77,8 +77,7 @@ resource "azurerm_synapse_managed_private_endpoint" "this" {
 
 resource "azurerm_role_assignment" "ra" {
   scope                = data.azurerm_storage_account.this.id
-  //FIXME
-  //role_definition_name = "Storage Blob Data Contributor"
-  role_definition_name = "Storage Account Contributor"
+  role_definition_name = "Storage Blob Data Contributor"
+  //role_definition_name = "Storage Account Contributor"
   principal_id         = azurerm_synapse_workspace.ws.identity[0].principal_id
 }
