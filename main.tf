@@ -105,4 +105,23 @@ resource "azurerm_eventhub" "ehub1" {
   message_retention   = 7
 }
 
+module "synapse" {
+  source = "./Modules/DataAnalytics/DW"
+  environment_name = local.environment
+  resource_group_name = data.azurerm_resource_group.rg_labs.name
+  location = var.location
+  storage_account = data.azurerm_storage_account.str_StateStore.name
+  database_pools = { sqlpool1 = { type = "sql", name = "sqlpool1", sku_name = "DW100c", create_mode = "Default" },sparkpool1 = { type = "spark", name = "sparkpool1" }}
+  managed_virtual_network_enabled = true
+  syn_ws_name = "srramswspc"
+  tags = {
+    environment = local.environment
+  }
+  aad_admin = {
+        login = "AzureAD Admin"
+        object_id = "e0ae2d70-3318-40bc-897b-e2a4ad85bd8f"
+        tenant_id = "50460471-2197-4938-8e96-0708f3384c45"
+    }
+ }
+
 
