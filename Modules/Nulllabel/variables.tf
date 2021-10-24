@@ -125,7 +125,7 @@ variable "label_order" {
 variable "context" {
   type        = string
   description = "A context to append to. Base64 encoded json is expected."
-  default     = "e2RlbGltaXRlcj0iLSJ9" # base64ecode(jsonencode({}))
+  default     = "eyJkZWxpbWl0ZXIiOiItIiwibmFtZXMiOlsiYSIsImIiLCJjIl19" # base64ecode(jsonencode({}))
 }
 
 variable "additional_tag_map" {
