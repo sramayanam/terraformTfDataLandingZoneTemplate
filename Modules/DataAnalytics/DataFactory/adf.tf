@@ -14,6 +14,12 @@ resource "azurerm_data_factory" "this" {
   }
 }
 
+resource "azurerm_data_factory_integration_runtime_self_hosted" "this" {
+  name                = var.integration_runtime_name
+  data_factory_name   = azurerm_data_factory.this.name
+  resource_group_name = azurerm_data_factory.this.resource_group_name
+}
+
 resource "azurerm_role_assignment" "data_lake_contributor_adf" {
   scope                = data.azurerm_storage_account.this.id
   role_definition_name = "Storage Blob Data Contributor"
@@ -37,4 +43,3 @@ resource "azurerm_role_assignment" "rg_data_factory_contributor" {
   role_definition_name = "Data Factory Contributor"
   principal_id         = var.principalname
 }
-
