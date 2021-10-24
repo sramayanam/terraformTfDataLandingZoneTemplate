@@ -137,4 +137,25 @@ module "synapse" {
     }
  }
 
+ resource "azurerm_application_insights" "this" {
+  name                = "workspace-example-ai"
+  location            = var.location
+  resource_group_name = data.azurerm_resource_group.rg_labs.name
+  application_type    = "web"
+}
+
+ resource "azurerm_machine_learning_workspace" "this" {
+  name                    = "srramml-workspace"
+  location                = var.location
+  resource_group_name     = data.azurerm_resource_group.rg_labs.name
+  application_insights_id = azurerm_application_insights.this.id
+  key_vault_id            = var.key_vault_resource_id
+  storage_account_id      = data.azurerm_storage_account.str_StateStore.id
+
+  identity {
+    type = "SystemAssigned"
+  }
+
+}
+
 
