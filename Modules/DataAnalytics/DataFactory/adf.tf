@@ -6,7 +6,7 @@ data "azurerm_storage_account" "this" {
 resource "azurerm_data_factory" "this" {
   name                            = var.adfname
   location                        = var.location
-  resource_group_name             = var.resource_group
+  resource_group_name             = var.resource_group_name
   managed_virtual_network_enabled = var.managed_virtual_network_enabled
   tags                            = var.tags
   identity {
@@ -33,7 +33,7 @@ resource "azurerm_role_assignment" "reader" {
 }
 
 resource "azurerm_role_assignment" "rg_data_factory_contributor" {
-  scope                = this.id
+  scope                = azurerm_data_factory.this.id
   role_definition_name = "Data Factory Contributor"
   principal_id         = var.principalname
 }
