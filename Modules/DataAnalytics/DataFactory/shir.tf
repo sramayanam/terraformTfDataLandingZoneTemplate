@@ -1,7 +1,7 @@
 module "shir" {
   source                     = "../../Compute/VirtualMachines/vmtemplate"
   resource_group_name        = var.resource_group_name
-  location                   = module.labels.location
+  location                   = var.location
   labels_context             = module.labels.context
   label_order                = module.labels.label_order
   project_name               = join("-", compact([module.labels.name, "shir"]))
