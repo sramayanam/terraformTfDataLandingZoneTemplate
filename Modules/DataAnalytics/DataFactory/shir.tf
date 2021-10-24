@@ -1,5 +1,5 @@
 module "shir" {
-  source                     = "../../Nulllabel"
+  source                     = "../../Compute/VirtualMachines/vmtemplate"
   resource_group_name        = var.resource_group_name
   location                   = module.labels.location
   labels_context             = module.labels.context
