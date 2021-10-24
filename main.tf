@@ -112,7 +112,7 @@ module "adf" {
   storage_account = data.azurerm_storage_account.str_StateStore.name
   managed_virtual_network_enabled = true
   adfname="srramadf1"
-  principalname="eff3524e-fba8-45c6-ac3d-e502ec6af06e"
+  principalname="343cae81-324c-4884-a60d-edf2be058107"
     tags = {
     environment = local.environment
   }
