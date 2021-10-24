@@ -59,7 +59,7 @@ variable "cluster_name" {
 variable "suffixes" {
   type        = list(string)
   description = "List of suffixes to to generate IDs with"
-  default     = ["nic1","ds1"]
+  default     = ["srramnic1","srramds1"]
 }
 
 
@@ -125,14 +125,8 @@ variable "label_order" {
 variable "context" {
   type        = string
   description = "A context to append to. Base64 encoded json is expected."
-  default     = "e30=" # base64ecode(jsonencode({}))
+  default     = "e2RlbGltaXRlcj0iLSJ9" # base64ecode(jsonencode({}))
 }
-
-
-# Rest
-
-
-
 
 variable "additional_tag_map" {
   type        = map(string)
