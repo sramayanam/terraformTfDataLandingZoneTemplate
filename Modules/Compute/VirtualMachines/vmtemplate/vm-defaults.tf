@@ -249,7 +249,7 @@ locals {
         local.vm_nic_defaults,
         var.vm_nic[id],
         { id = id },
-        { name = format("%s-${var.vm_id_format}-%s", module.labels.id_with_suffix.nic, var.vm_id + v, id) },
+        { name = format("%s-${var.vm_id_format}-%s","nic", var.vm_id + v, id) },
         { vm_host_id = format("%s-%s", "vm", v) },
       )
     }
