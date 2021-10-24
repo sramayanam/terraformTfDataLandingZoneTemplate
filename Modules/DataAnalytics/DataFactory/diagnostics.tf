@@ -29,11 +29,11 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
     for_each = toset(local.azurerm_adf_monitor_diagnostic_categories.logs)
     content {
       category = log.key
-      enabled  = local.logs.enabled
+      enabled  = var.logs.enabled
 
       retention_policy {
         enabled = true
-        days    = local.logs.retention_days
+        days    = var.logs.retention_days
       }
     }
   }
@@ -42,11 +42,11 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
     for_each = toset(local.azurerm_adf_monitor_diagnostic_categories.metrics)
     content {
       category = metric.key
-      enabled  = local.metrics.enabled
+      enabled  = var.metrics.enabled
 
       retention_policy {
         enabled = true
-        days    = local.metrics.retention_days
+        days    = var.metrics.retention_days
       }
     }
   }
