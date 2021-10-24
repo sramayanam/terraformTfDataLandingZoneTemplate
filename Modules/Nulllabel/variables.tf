@@ -59,7 +59,7 @@ variable "cluster_name" {
 variable "suffixes" {
   type        = list(string)
   description = "List of suffixes to to generate IDs with"
-  default     = ["srramnic1","srramds1"]
+  default     = ["nic","ds"]
 }
 
 
