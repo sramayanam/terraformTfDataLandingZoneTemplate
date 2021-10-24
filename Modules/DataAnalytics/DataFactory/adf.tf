@@ -15,7 +15,7 @@ resource "azurerm_data_factory" "this" {
 }
 
 resource "azurerm_role_assignment" "data_lake_contributor_adf" {
-  scope                = azurerm_data_factory.this.id
+  scope                = data.azurerm_storage_account.this.id
   role_definition_name = "Storage Blob Data Contributor"
   principal_id         = azurerm_data_factory.this.identity[0].principal_id
 }
