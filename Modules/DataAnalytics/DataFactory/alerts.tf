@@ -1,7 +1,7 @@
 resource "azurerm_monitor_metric_alert" "this" {
-  for_each             = local.alerts
+  for_each             = var.alerts
   name                 = module.labels.ids_with_suffix[each.key].alert
-  resource_group_name  = azurerm_resource_group.this.name
+  resource_group_name  = var.resource_group_name
   enabled              = each.value.enabled
   auto_mitigate        = each.value.auto_mitigate
   description          = each.value.description
