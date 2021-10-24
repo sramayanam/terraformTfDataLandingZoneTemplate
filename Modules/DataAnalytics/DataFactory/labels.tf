@@ -5,11 +5,11 @@ module "labels" {
   environment = var.environment
 
   names = flatten([
-    join("-", compact([var.name, "adf"])),
+    join("-", compact([var.name, "adf1"])),
     keys(var.alerts)
   ])
 
   tags = {
-    terraform-module = "datafactory"
+    terraform-module = "srramdatafactory"
   }
 }
