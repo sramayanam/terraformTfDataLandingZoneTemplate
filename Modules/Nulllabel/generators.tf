@@ -29,7 +29,7 @@ locals {
     n => {
       for k in local.context.suffixes :
       k => format("%s%s%s", local.ids[n], local.context.delimiter, k)
-    }
+    }...
   }
 
   # Id transformed to match Azure storage account name requirements: /[a-z0-9]{3,24}/
@@ -52,7 +52,7 @@ locals {
 
   id_with_suffix = {
     for k in local.context.suffixes :
-    k => format("%s%s%s", local.id, local.context.delimiter, k)
+    k => format("%s%s%s", local.id, local.context.delimiter, k)...
   }
 
   generated_tags = {
