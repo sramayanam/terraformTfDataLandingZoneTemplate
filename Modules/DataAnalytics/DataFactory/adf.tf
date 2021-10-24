@@ -1,6 +1,6 @@
 data "azurerm_storage_account" "this" {
   name                = var.storage_account
-  resource_group_name = var.resource_group
+  resource_group_name = var.resource_group_name
 }
 
 resource "azurerm_data_factory" "this" {
@@ -15,7 +15,7 @@ resource "azurerm_data_factory" "this" {
 }
 
 resource "azurerm_role_assignment" "data_lake_contributor_adf" {
-  scope                = azurerm_data_factory.this.name.id
+  scope                = azurerm_data_factory.this.id
   role_definition_name = "Storage Blob Data Contributor"
   principal_id         = azurerm_data_factory.this.identity[0].principal_id
 }
