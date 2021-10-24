@@ -105,6 +105,19 @@ resource "azurerm_eventhub" "ehub1" {
   message_retention   = 7
 }
 
+module "adf" {
+  source = "./Modules/DataAnalytics/DataFactory"
+  resource_group_name = data.azurerm_resource_group.rg_labs.name
+  location = var.location
+  storage_account = data.azurerm_storage_account.str_StateStore.name
+  managed_virtual_network_enabled = true
+  adfname="srramadf1"
+  principalname="eff3524e-fba8-45c6-ac3d-e502ec6af06e"
+    tags = {
+    environment = local.environment
+  }
+}
+
 module "synapse" {
   source = "./Modules/DataAnalytics/DW"
   environment_name = local.environment
