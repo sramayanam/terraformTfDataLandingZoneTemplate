@@ -46,7 +46,7 @@ variable "environment" {
 variable "labels_context" {
   description = "null-label module context"
   type        = string
-  default     = "c3JyYW0x"
+  default     = "e30="
 }
 
 variable "resource_group_name" {
