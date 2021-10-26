@@ -110,6 +110,7 @@ resource "azurerm_eventhub_namespace" "ehnamespace" {
 }
 
 resource "azurerm_eventhub" "ehub1" {
+  count               = local.createeventhub ? 1 : 0
   name                = "sourceeventhub"
   namespace_name      = azurerm_eventhub_namespace.ehnamespace[0].name
   resource_group_name = data.azurerm_resource_group.rg_labs.name
