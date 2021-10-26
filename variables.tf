@@ -14,8 +14,8 @@ variable "databasePools" {
   type = list(object({
     type        = string
     name        = string
-    sku_name    = string
-    create_mode = string
+    sku_name    = optional(string)
+    create_mode = optional(string)
   }))
   description = "Spark Pool and SQL Pool Configuration"
   default     = { sqlpool1 = { type = "sql", name = "sqlpool1", sku_name = "DW100c", create_mode = "Default" }, sparkpool1 = { type = "spark", name = "sparkpool1" } }
