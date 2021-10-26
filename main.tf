@@ -79,7 +79,7 @@ module "vm" {
 
 locals {
   environment     = var.environment
-  createeventhub  = val.spinExtra
+  createeventhub  = var.spinExtra
  /*
   vm = {
     computer_name = var.vm_name
