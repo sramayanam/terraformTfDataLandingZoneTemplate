@@ -4,6 +4,12 @@ variable "tagEnvironment" {
   default     = "staging"
 }
 
+variable "spinExtra" {
+  type        = bool
+  description = "The Extra Environment to spin"
+  default     = false
+}
+
 ###################################################
 # Environment Specs
 ###################################################
