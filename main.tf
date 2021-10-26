@@ -20,6 +20,8 @@ provider "azurerm" {
 resource "random_string" "random" {
   length  = 5
   special = false
+  lower = true
+  number = false
 }
 
 #Resource block
