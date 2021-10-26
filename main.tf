@@ -78,7 +78,8 @@ module "vm" {
 */
 
 locals {
-  environment = var.environment
+  environment     = var.environment
+  createeventhub  = false
  /*
   vm = {
     computer_name = var.vm_name
@@ -94,8 +95,9 @@ data "azurerm_key_vault_secret" "main" {
   key_vault_id = var.key_vault_resource_id
 }
 
-/*
+
 resource "azurerm_eventhub_namespace" "ehnamespace" {
+  count               = local.createeventhub ? 1 : 0
   name                = "srramsampleeh"
   location            = var.location
   resource_group_name = data.azurerm_resource_group.rg_labs.name
@@ -108,13 +110,14 @@ resource "azurerm_eventhub_namespace" "ehnamespace" {
 }
 
 resource "azurerm_eventhub" "ehub1" {
+  count               = local.createeventhub ? 1 : 0
   name                = "sourceeventhub"
   namespace_name      = azurerm_eventhub_namespace.ehnamespace.name
   resource_group_name = data.azurerm_resource_group.rg_labs.name
   partition_count     = 8
   message_retention   = 7
 }
-*/
+
 
 module "adf" {
   source = "./Modules/DataAnalytics/DataFactory"
