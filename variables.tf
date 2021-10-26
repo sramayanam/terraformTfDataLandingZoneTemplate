@@ -10,6 +10,11 @@ variable "spinExtra" {
   default     = false
 }
 
+variable "stateStore" {
+  type        = string
+  description = "the storage for the state store"
+}
+
 ###################################################
 # Environment Specs
 ###################################################

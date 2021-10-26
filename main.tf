@@ -23,7 +23,7 @@ data "azurerm_resource_group" "rg_labs" {
 
 
 data "azurerm_storage_account" "str_StateStore" {
-  name                = "storagephswmdag"
+  name                = var.stateStore
   resource_group_name = data.azurerm_resource_group.rg_labs.name
 
   depends_on = [
