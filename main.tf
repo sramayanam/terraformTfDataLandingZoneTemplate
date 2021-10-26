@@ -20,7 +20,6 @@ provider "azurerm" {
 resource "random_string" "random" {
   length  = 5
   special = false
-  lower = true
   number = false
 }
 
@@ -136,7 +135,7 @@ module "adf" {
   location                        = var.location
   storage_account                 = data.azurerm_storage_account.str_StateStore.name
   managed_virtual_network_enabled = true
-  adfname                         = format("%s/%s", random_string.random.result, "adf")
+  adfname                         = format("%s%s", lower(random_string.random.result), "adf")
   principalname                   = "343cae81-324c-4884-a60d-edf2be058107"
   tags = {
     environment = local.environment
