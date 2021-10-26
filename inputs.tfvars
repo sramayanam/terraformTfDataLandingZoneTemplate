@@ -1,5 +1,5 @@
 tagEnvironment        = "staging"
-stateStore            = "storagephswmdag" 
+stateStore            = "storagephswmdag"
 key_vault_name        = "srramkv123"
 key_vault_resource_id = "/subscriptions/3d60da7d-bacf-4c0f-9333-16143cd9da70/resourceGroups/rgTerraformLabs/providers/Microsoft.KeyVault/vaults/srramkv123"
 admin_pw_name         = "admin-pw"
@@ -7,4 +7,9 @@ location              = "eastus"
 environment           = "dev"
 rg_name               = "rgTerraformLabs"
 vm_name               = "srramvm1"
-spinExtra             = false  
+spinExtra             = false
+loginId               = "eff3524e-fba8-45c6-ac3d-e502ec6af06e"
+objectId              = "df467aeb-68b5-4550-9a82-4979cb3a1abb"
+tenantId              = "50460471-2197-4938-8e96-0708f3384c45"
+principalName         = "343cae81-324c-4884-a60d-edf2be058107"
+

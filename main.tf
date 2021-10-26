@@ -136,7 +136,7 @@ module "adf" {
   storage_account                 = data.azurerm_storage_account.str_StateStore.name
   managed_virtual_network_enabled = true
   adfname                         = format("%s%s", lower(random_string.random.result), "adf")
-  principalname                   = "343cae81-324c-4884-a60d-edf2be058107"
+  principalname                   = var.principalName
   tags = {
     environment = local.environment
   }
@@ -155,9 +155,9 @@ module "synapse" {
     environment = local.environment
   }
   aad_admin = {
-    login     = "eff3524e-fba8-45c6-ac3d-e502ec6af06e"
-    object_id = "df467aeb-68b5-4550-9a82-4979cb3a1abb"
-    tenant_id = "50460471-2197-4938-8e96-0708f3384c45"
+    login     = var.loginId
+    object_id = var.objectId
+    tenant_id = var.tenantId
   }
 }
 

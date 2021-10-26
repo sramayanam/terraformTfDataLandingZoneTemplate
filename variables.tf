@@ -87,3 +87,27 @@ variable "vm_name" {
 }
 
 
+variable "loginId" {
+  type        = string
+  description = "SP Login"
+
+}
+
+variable "objectId" {
+  type        = string
+  description = "Object ID"
+
+}
+
+variable "tenantId" {
+  type        = string
+  description = "Tenant ID"
+
+}
+
+variable "principalName" {
+  type        = string
+  description = "EA Principal name"
+
+}
+
