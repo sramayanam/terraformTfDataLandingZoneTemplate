@@ -20,7 +20,7 @@ provider "azurerm" {
 resource "random_string" "random" {
   length  = 5
   special = false
-  number = false
+  number  = false
 }
 
 #Resource block
@@ -148,7 +148,7 @@ module "synapse" {
   resource_group_name             = data.azurerm_resource_group.rg_labs.name
   location                        = var.location
   storage_account                 = data.azurerm_storage_account.str_StateStore.name
-  database_pools                  = { sqlpool1 = { type = "sql", name = "sqlpool1", sku_name = "DW100c", create_mode = "Default" }, sparkpool1 = { type = "spark", name = "sparkpool1" } }
+  database_pools                  = var.databasePools
   managed_virtual_network_enabled = true
   syn_ws_name                     = "srramswspc"
   tags = {
@@ -169,7 +169,7 @@ resource "azurerm_application_insights" "this" {
 }
 
 resource "azurerm_machine_learning_workspace" "this" {
-  name                    = "srramml-workspace"
+  name                    = format("%s%s", lower(random_string.random.result), "mlws")
   location                = var.location
   resource_group_name     = data.azurerm_resource_group.rg_labs.name
   application_insights_id = azurerm_application_insights.this.id
@@ -181,5 +181,3 @@ resource "azurerm_machine_learning_workspace" "this" {
   }
 
 }
-
-
