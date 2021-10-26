@@ -11,12 +11,15 @@ variable "spinExtra" {
 }
 
 variable "databasePools" {
-  type = list(object({
+  type = object({ sqlpool1 = object({
     type        = string
     name        = string
-    sku_name    = optional(string)
+    sku_name    = string
     create_mode = optional(string)
-  }))
+    }), sparkpool1 = object({ sparkpool1 = object({
+      type = string
+      name = string
+  }) }) })
   description = "Spark Pool and SQL Pool Configuration"
   default     = { sqlpool1 = { type = "sql", name = "sqlpool1", sku_name = "DW100c", create_mode = "Default" }, sparkpool1 = { type = "spark", name = "sparkpool1" } }
 }
