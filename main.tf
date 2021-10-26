@@ -116,7 +116,7 @@ resource "azurerm_eventhub" "ehub1" {
   partition_count     = 8
   message_retention   = 7
   depends_on = [
-    "azurerm_eventhub_namespace"."ehnamespace"
+    azurerm_eventhub_namespace.ehnamespace
   ]
 }
 
