@@ -75,17 +75,19 @@ module "vm" {
   password    = data.azurerm_key_vault_secret.main.value
   user        = local.vm.user_name
 }
-
+*/
 
 locals {
   environment = var.environment
+ /*
   vm = {
     computer_name = var.vm_name
     user_name     = "admin1234"
   }
+ */
 }
   
-*/
+
 
 data "azurerm_key_vault_secret" "main" {
   name         = var.admin_pw_name
