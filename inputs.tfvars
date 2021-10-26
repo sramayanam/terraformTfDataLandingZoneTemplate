@@ -6,3 +6,4 @@ location              = "eastus"
 environment           = "dev"
 rg_name               = "rgTerraformLabs"
 vm_name               = "srramvm1"
+spinExtra             = false  
