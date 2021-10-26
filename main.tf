@@ -16,6 +16,12 @@ provider "azurerm" {
   }
 }
 
+#create a random string 
+resource "random_string" "random" {
+  length           = 5
+  special          = false
+}
+
 #Resource block
 data "azurerm_resource_group" "rg_labs" {
   name = "rgTerraformLabs"
@@ -128,7 +134,7 @@ module "adf" {
   location = var.location
   storage_account = data.azurerm_storage_account.str_StateStore.name
   managed_virtual_network_enabled = true
-  adfname="srramadf1"
+  adfname=concat(random_string.random.id,"adf")
   principalname="343cae81-324c-4884-a60d-edf2be058107"
     tags = {
     environment = local.environment
