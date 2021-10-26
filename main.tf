@@ -32,7 +32,7 @@ data "azurerm_storage_account" "str_StateStore" {
 
 }
 
-
+/*
 data "azurerm_public_ip" "pip" {
   name                = "pipubuntuvm"
   resource_group_name = data.azurerm_resource_group.rg_labs.name
@@ -41,6 +41,7 @@ data "azurerm_public_ip" "pip" {
     data.azurerm_resource_group.rg_labs
   ]
 }
+*/
 
 module "vnet" {
   source = "./Modules/Network/VirtualNetwork"
@@ -53,6 +54,7 @@ module "vnet" {
   nsg_id      = module.nsg.id_out
 }
 
+
 module "nsg" {
   source      = "./Modules/Network/NetworkSecurityGroup"
   location    = var.location
@@ -60,6 +62,7 @@ module "nsg" {
   rg_name     = var.rg_name
   port        = 22
 }
+
 
 /*
 module "vm" {
