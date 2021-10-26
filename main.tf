@@ -61,6 +61,7 @@ module "nsg" {
   port        = 22
 }
 
+/*
 module "vm" {
   source      = "./Modules/Compute/VirtualMachines"
   location    = var.location
@@ -71,6 +72,7 @@ module "vm" {
   password    = data.azurerm_key_vault_secret.main.value
   user        = local.vm.user_name
 }
+*/
 
 locals {
   environment = var.environment
@@ -85,6 +87,7 @@ data "azurerm_key_vault_secret" "main" {
   key_vault_id = var.key_vault_resource_id
 }
 
+/*
 resource "azurerm_eventhub_namespace" "ehnamespace" {
   name                = "srramsampleeh"
   location            = var.location
@@ -104,6 +107,7 @@ resource "azurerm_eventhub" "ehub1" {
   partition_count     = 8
   message_retention   = 7
 }
+*/
 
 module "adf" {
   source = "./Modules/DataAnalytics/DataFactory"
