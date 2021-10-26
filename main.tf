@@ -18,8 +18,8 @@ provider "azurerm" {
 
 #create a random string 
 resource "random_string" "random" {
-  length           = 5
-  special          = false
+  length  = 5
+  special = false
 }
 
 #Resource block
@@ -84,16 +84,16 @@ module "vm" {
 */
 
 locals {
-  environment     = var.environment
-  createeventhub  = var.spinExtra
- /*
+  environment    = var.environment
+  createeventhub = var.spinExtra
+  /*
   vm = {
     computer_name = var.vm_name
     user_name     = "admin1234"
   }
  */
 }
-  
+
 
 
 data "azurerm_key_vault_secret" "main" {
@@ -129,45 +129,45 @@ resource "azurerm_eventhub" "ehub1" {
 
 
 module "adf" {
-  source = "./Modules/DataAnalytics/DataFactory"
-  resource_group_name = data.azurerm_resource_group.rg_labs.name
-  location = var.location
-  storage_account = data.azurerm_storage_account.str_StateStore.name
+  source                          = "./Modules/DataAnalytics/DataFactory"
+  resource_group_name             = data.azurerm_resource_group.rg_labs.name
+  location                        = var.location
+  storage_account                 = data.azurerm_storage_account.str_StateStore.name
   managed_virtual_network_enabled = true
-  adfname=concat(random_string.random.id,"adf")
-  principalname="343cae81-324c-4884-a60d-edf2be058107"
-    tags = {
+  adfname                         = format("%s/%s", random_string.random.result, "adf")
+  principalname                   = "343cae81-324c-4884-a60d-edf2be058107"
+  tags = {
     environment = local.environment
   }
 }
 
 module "synapse" {
-  source = "./Modules/DataAnalytics/DW"
-  environment_name = local.environment
-  resource_group_name = data.azurerm_resource_group.rg_labs.name
-  location = var.location
-  storage_account = data.azurerm_storage_account.str_StateStore.name
-  database_pools = { sqlpool1 = { type = "sql", name = "sqlpool1", sku_name = "DW100c", create_mode = "Default" },sparkpool1 = { type = "spark", name = "sparkpool1" }}
+  source                          = "./Modules/DataAnalytics/DW"
+  environment_name                = local.environment
+  resource_group_name             = data.azurerm_resource_group.rg_labs.name
+  location                        = var.location
+  storage_account                 = data.azurerm_storage_account.str_StateStore.name
+  database_pools                  = { sqlpool1 = { type = "sql", name = "sqlpool1", sku_name = "DW100c", create_mode = "Default" }, sparkpool1 = { type = "spark", name = "sparkpool1" } }
   managed_virtual_network_enabled = true
-  syn_ws_name = "srramswspc"
+  syn_ws_name                     = "srramswspc"
   tags = {
     environment = local.environment
   }
   aad_admin = {
-        login = "eff3524e-fba8-45c6-ac3d-e502ec6af06e"
-        object_id = "df467aeb-68b5-4550-9a82-4979cb3a1abb"
-        tenant_id = "50460471-2197-4938-8e96-0708f3384c45"
-    }
- }
+    login     = "eff3524e-fba8-45c6-ac3d-e502ec6af06e"
+    object_id = "df467aeb-68b5-4550-9a82-4979cb3a1abb"
+    tenant_id = "50460471-2197-4938-8e96-0708f3384c45"
+  }
+}
 
- resource "azurerm_application_insights" "this" {
+resource "azurerm_application_insights" "this" {
   name                = "workspace-example-ai"
   location            = var.location
   resource_group_name = data.azurerm_resource_group.rg_labs.name
   application_type    = "web"
 }
 
- resource "azurerm_machine_learning_workspace" "this" {
+resource "azurerm_machine_learning_workspace" "this" {
   name                    = "srramml-workspace"
   location                = var.location
   resource_group_name     = data.azurerm_resource_group.rg_labs.name
