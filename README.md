@@ -1,6 +1,6 @@
 # Terraform template for a sample data environment
 
-    - Example of a sample data landing zone that creates a fully functional data and ai environment for the  POC
+    - Example of a sample data landing zone that creates a fully functional data and ai environment for doing POCs with customer's sample data and run in a non production like environment
 
 ## Pre-Requisites
 
@@ -8,6 +8,7 @@
     2. Create a key Vault and have the Resource ID ready
     3. Create an Azure Storage Account. This storage account also serves as the Terraform state store
     4. A service principal, Secret and the Tenant ID with a permission of the Owner on the subscription
+    5. To get maximum benifit customer could port their data from on-prem into the blob storage they created in step3
 
 ### All you need to do is change the inputs.tfvars and run three terraform commands to get your environment set up
 
