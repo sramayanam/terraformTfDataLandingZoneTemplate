@@ -150,7 +150,7 @@ module "synapse" {
   storage_account                 = data.azurerm_storage_account.str_StateStore.name
   database_pools                  = var.databasePools
   managed_virtual_network_enabled = true
-  syn_ws_name                     = "srramswspc"
+  syn_ws_name                     = var.synWsName
   tags = {
     environment = local.environment
   }

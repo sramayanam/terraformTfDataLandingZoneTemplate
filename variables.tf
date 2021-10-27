@@ -111,3 +111,8 @@ variable "principalName" {
 
 }
 
+variable "synWsName" {
+  type        = string
+  description = "synapse workspace name"
+
+}
