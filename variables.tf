@@ -119,5 +119,5 @@ variable "synWsName" {
 
 variable "synaddsecObj" {
   description = "Object ID of the user or the service principal"
-  type        = string
+  type        = set(string)
 }

@@ -100,5 +100,5 @@ variable "syn_ws_name" {
 
 variable "secObj" {
   description = "Object ID of the user or the service principal"
-  type        = string
+  type        = set(string)
 }
