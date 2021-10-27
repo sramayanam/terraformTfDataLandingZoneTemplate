@@ -50,7 +50,7 @@ resource "azurerm_synapse_role_assignment" "synsqladmin" {
   for_each             = var.secObj
   synapse_workspace_id = azurerm_synapse_workspace.ws.id
   role_name            = "Synapse SQL Administrator"
-  principal_id         = each.Key
+  principal_id         = each.key
   depends_on           = [azurerm_synapse_firewall_rule.this]
 }
 
@@ -58,7 +58,7 @@ resource "azurerm_synapse_role_assignment" "synadmin" {
   for_each             = var.secObj
   synapse_workspace_id = azurerm_synapse_workspace.ws.id
   role_name            = "Synapse Administrator"
-  principal_id         = each.Key
+  principal_id         = each.key
   depends_on           = [azurerm_synapse_firewall_rule.this]
 }
 
@@ -66,7 +66,7 @@ resource "azurerm_synapse_role_assignment" "synuser" {
   for_each             = var.secObj
   synapse_workspace_id = azurerm_synapse_workspace.ws.id
   role_name            = "Synapse User"
-  principal_id         = each.Key
+  principal_id         = each.key
   depends_on           = [azurerm_synapse_firewall_rule.this]
 }
 
@@ -74,7 +74,7 @@ resource "azurerm_synapse_role_assignment" "syncreduser" {
   for_each             = var.secObj
   synapse_workspace_id = azurerm_synapse_workspace.ws.id
   role_name            = "Synapse Credential User"
-  principal_id         = each.Key
+  principal_id         = each.key
   depends_on           = [azurerm_synapse_firewall_rule.this]
 }
 
