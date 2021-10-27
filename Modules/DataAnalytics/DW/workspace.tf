@@ -60,6 +60,12 @@ resource "azurerm_synapse_role_assignment" "synadmin" {
   depends_on           = [azurerm_synapse_firewall_rule.this]
 }
 
+resource "azurerm_synapse_role_assignment" "synuser" {
+  synapse_workspace_id = azurerm_synapse_workspace.ws.id
+  role_name            = "Synapse User"
+  principal_id         = "867baad1-f334-4216-9907-f946ef3198d2"
+  depends_on           = [azurerm_synapse_firewall_rule.this]
+}
 
 resource "random_password" "sql_administrator" {
   length      = 32
