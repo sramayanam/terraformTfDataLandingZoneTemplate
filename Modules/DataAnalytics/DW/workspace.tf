@@ -1,6 +1,6 @@
 
 locals {
-  resource_group = var.resource_group_name
+  resource_group              = var.resource_group_name
   managed_resource_group_name = "mg-rg-dw-${var.environment_name}"
 }
 
@@ -30,21 +30,34 @@ resource "azurerm_synapse_workspace" "ws" {
   sql_administrator_login_password     = random_password.sql_administrator.result
   tags                                 = var.tags
   sql_identity_control_enabled         = true
-  managed_virtual_network_enabled      = var.managed_virtual_network_enabled  
+  managed_virtual_network_enabled      = var.managed_virtual_network_enabled
 
-    aad_admin  {
-                login     = var.aad_admin.login
-                object_id = var.aad_admin.object_id
-                tenant_id = var.aad_admin.tenant_id
-            }      
+  aad_admin {
+    login     = var.aad_admin.login
+    object_id = var.aad_admin.object_id
+    tenant_id = var.aad_admin.tenant_id
+  }
 }
-
 
 resource "azurerm_synapse_firewall_rule" "this" {
   name                 = "AllowAll"
   synapse_workspace_id = azurerm_synapse_workspace.ws.id
   start_ip_address     = "0.0.0.0"
   end_ip_address       = "255.255.255.255"
+}
+
+resource "azurerm_synapse_role_assignment" "synsqladmin" {
+  synapse_workspace_id = azurerm_synapse_workspace.ws.id
+  role_name            = "Synapse SQL Administrator"
+  principal_id         = "867baad1-f334-4216-9907-f946ef3198d2"
+  depends_on           = [azurerm_synapse_firewall_rule.this]
+}
+
+resource "azurerm_synapse_role_assignment" "synadmin" {
+  synapse_workspace_id = azurerm_synapse_workspace.ws.id
+  role_name            = "Synapse Administrator"
+  principal_id         = "867baad1-f334-4216-9907-f946ef3198d2"
+  depends_on           = [azurerm_synapse_firewall_rule.this]
 }
 
 
@@ -67,7 +80,7 @@ resource "random_password" "sql_administrator" {
 
 //Create a private link between Synapse managed Vnet and the blob storage
 resource "azurerm_synapse_managed_private_endpoint" "this" {
-  count = var.managed_virtual_network_enabled ?1:0
+  count                = var.managed_virtual_network_enabled ? 1 : 0
   name                 = "${var.storage_account}-endpoint"
   synapse_workspace_id = azurerm_synapse_workspace.ws.id
   target_resource_id   = data.azurerm_storage_account.this.id
@@ -81,5 +94,5 @@ resource "azurerm_role_assignment" "ra" {
   scope                = data.azurerm_storage_account.this.id
   role_definition_name = "Storage Blob Data Contributor"
   //role_definition_name = "Storage Account Contributor"
-  principal_id         = azurerm_synapse_workspace.ws.identity[0].principal_id
+  principal_id = azurerm_synapse_workspace.ws.identity[0].principal_id
 }
