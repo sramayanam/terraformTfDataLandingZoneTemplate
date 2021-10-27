@@ -49,28 +49,28 @@ resource "azurerm_synapse_firewall_rule" "this" {
 resource "azurerm_synapse_role_assignment" "synsqladmin" {
   synapse_workspace_id = azurerm_synapse_workspace.ws.id
   role_name            = "Synapse SQL Administrator"
-  principal_id         = "867baad1-f334-4216-9907-f946ef3198d2"
+  principal_id         = var.secObj
   depends_on           = [azurerm_synapse_firewall_rule.this]
 }
 
 resource "azurerm_synapse_role_assignment" "synadmin" {
   synapse_workspace_id = azurerm_synapse_workspace.ws.id
   role_name            = "Synapse Administrator"
-  principal_id         = "dc12d588-416e-46dc-897a-d40636c9dc4e"
+  principal_id         = var.secObj
   depends_on           = [azurerm_synapse_firewall_rule.this]
 }
 
 resource "azurerm_synapse_role_assignment" "synuser" {
   synapse_workspace_id = azurerm_synapse_workspace.ws.id
   role_name            = "Synapse User"
-  principal_id         = "867baad1-f334-4216-9907-f946ef3198d2"
+  principal_id         = var.secObj
   depends_on           = [azurerm_synapse_firewall_rule.this]
 }
 
 resource "azurerm_synapse_role_assignment" "syncreduser" {
   synapse_workspace_id = azurerm_synapse_workspace.ws.id
   role_name            = "Synapse Credential User"
-  principal_id         = "867baad1-f334-4216-9907-f946ef3198d2"
+  principal_id         = var.secObj
   depends_on           = [azurerm_synapse_firewall_rule.this]
 }
 

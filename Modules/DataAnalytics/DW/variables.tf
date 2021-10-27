@@ -97,3 +97,8 @@ variable "syn_ws_name" {
   description = "synapse workspace name"
   type        = string
 }
+
+variable "secObj" {
+  description = "Object ID of the user or the service principal"
+  type        = string
+}

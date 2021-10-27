@@ -13,4 +13,5 @@ objectId              = "df467aeb-68b5-4550-9a82-4979cb3a1abb"
 tenantId              = "50460471-2197-4938-8e96-0708f3384c45"
 principalName         = "343cae81-324c-4884-a60d-edf2be058107"
 synWsName             = "srramswspc"
+synaddsecObj          = "dc12d588-416e-46dc-897a-d40636c9dc4e"
 

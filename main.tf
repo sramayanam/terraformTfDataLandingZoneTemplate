@@ -151,6 +151,7 @@ module "synapse" {
   database_pools                  = var.databasePools
   managed_virtual_network_enabled = true
   syn_ws_name                     = var.synWsName
+  secObj                          = var.synaddsecObj
   tags = {
     environment = local.environment
   }
