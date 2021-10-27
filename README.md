@@ -1,6 +1,7 @@
 # Terraform template for a sample data environment
 
     - Example of a sample data landing zone that creates a fully functional data and ai environment for doing POCs with customer's sample data and run in a non production like environment
+    - To make this an MVP and move data over complex network routes which is more common to prove end to end scenarios Data/AI CSAs should work with customer's infra-structure and the network team
 
 ## Pre-Requisites
 
