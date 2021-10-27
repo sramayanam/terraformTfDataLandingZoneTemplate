@@ -65,6 +65,7 @@ resource "random_password" "sql_administrator" {
 }
 
 
+//Create a private link between Synapse managed Vnet and the blob storage
 resource "azurerm_synapse_managed_private_endpoint" "this" {
   count = var.managed_virtual_network_enabled ?1:0
   name                 = "${var.storage_account}-endpoint"
@@ -75,7 +76,7 @@ resource "azurerm_synapse_managed_private_endpoint" "this" {
   depends_on = [azurerm_synapse_firewall_rule.this]
 }
 
-
+//Assign the Synapse Workspace Managed Identity to Storage blob as Blob Data contributor
 resource "azurerm_role_assignment" "ra" {
   scope                = data.azurerm_storage_account.this.id
   role_definition_name = "Storage Blob Data Contributor"
