@@ -121,3 +121,9 @@ variable "synaddsecObj" {
   description = "Object ID of the user or the service principal"
   type        = set(string)
 }
+
+variable "image_build_compute_name" {
+  type        = string
+  description = "Name of the compute cluster to be created and set to build docker images"
+  default     = "image-builder"
+}

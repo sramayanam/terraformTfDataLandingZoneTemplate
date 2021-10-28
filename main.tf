@@ -180,5 +180,6 @@ resource "azurerm_machine_learning_workspace" "this" {
   identity {
     type = "SystemAssigned"
   }
-
+  public_network_access_enabled = false
+  image_build_compute_name      = var.image_build_compute_name
 }
