@@ -17,3 +17,21 @@ variable "nsg_id" {
   type        = string
   description = "Resource ID of the NSG"
 }
+
+variable "training_subnet_address_space" {
+  type        = list(string)
+  description = "Address space of the training subnet"
+  default     = ["10.0.1.0/24"]
+}
+
+variable "aks_subnet_address_space" {
+  type        = list(string)
+  description = "Address space of the aks subnet"
+  default     = ["10.0.2.0/23"]
+}
+
+variable "ml_subnet_address_space" {
+  type        = list(string)
+  description = "Address space of the ML workspace subnet"
+  default     = ["10.0.3.0/24"]
+}
