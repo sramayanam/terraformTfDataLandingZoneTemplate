@@ -44,10 +44,12 @@ resource "azurerm_private_endpoint" "st_ple_blob" {
   resource_group_name = var.rg_name
   subnet_id           = azurerm_subnet.snet-workspace.id
 
+/*
   private_dns_zone_group {
     name                 = "private-dns-zone-group"
     private_dns_zone_ids = [azurerm_private_dns_zone.dnsstorageblob.id]
   }
+*/
 
   private_service_connection {
     name                           = "psc-${var.environment}-st"
