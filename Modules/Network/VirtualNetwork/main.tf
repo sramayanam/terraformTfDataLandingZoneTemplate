@@ -40,7 +40,7 @@ resource "azurerm_private_endpoint" "st_ple_blob" {
   name                = "ple-ml-${var.environment}-st-blob"
   location            = var.location
   resource_group_name = var.rg_name
-  subnet_id           = "/subscriptions/3d60da7d-bacf-4c0f-9333-16143cd9da70/resourceGroups/rgTerraformLabs/providers/Microsoft.Network/virtualNetworks/dev-network/subnets/subnet1"
+  subnet_id           = "/subscriptions/3d60da7d-bacf-4c0f-9333-16143cd9da70/resourceGroups/rgTerraformLabs/providers/Microsoft.Network/virtualNetworks/dev-network/subnets/snet-training"
 
   /*
   private_dns_zone_group {
