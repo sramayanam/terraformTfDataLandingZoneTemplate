@@ -51,7 +51,7 @@ resource "azurerm_private_endpoint" "st_ple_blob" {
 
   private_service_connection {
     name                           = "psc-${var.environment}-st"
-    private_connection_resource_id = "/subscriptions/3d60da7d-bacf-4c0f-9333-16143cd9da70/resourceGroups/rgTerraformLabs/providers/Microsoft.Storage/storageAccounts/storagephswmdag/blobServices/default"
+    private_connection_resource_id = "/subscriptions/3d60da7d-bacf-4c0f-9333-16143cd9da70/resourceGroups/rgTerraformLabs/providers/Microsoft.Storage/storageAccounts/storagephswmdag"
     subresource_names              = ["blob"]
     is_manual_connection           = false
   }
