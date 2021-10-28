@@ -11,28 +11,15 @@ resource "azurerm_virtual_network" "main" {
 
 }
 
-resource "azurerm_subnet" "snet-training" {
-  name                                           = "snet-training"
-  resource_group_name                            = var.rg_name
-  virtual_network_name                           = azurerm_virtual_network.main.name
-  address_prefixes                               = var.training_subnet_address_space
-  enforce_private_link_endpoint_network_policies = true
-}
-
-resource "azurerm_subnet" "snet-aks" {
-  name                                           = "snet-aks"
-  resource_group_name                            = var.rg_name
-  virtual_network_name                           = azurerm_virtual_network.main.name
-  address_prefixes                               = var.aks_subnet_address_space
-  enforce_private_link_endpoint_network_policies = true
-}
-
 resource "azurerm_subnet" "snet-workspace" {
   name                                           = "snet-workspace"
   resource_group_name                            = var.rg_name
   virtual_network_name                           = azurerm_virtual_network.main.name
   address_prefixes                               = var.ml_subnet_address_space
   enforce_private_link_endpoint_network_policies = true
+  depends_on = [
+    azurerm_virtual_network.main
+  ]
 }
 
 
@@ -40,7 +27,7 @@ resource "azurerm_private_endpoint" "st_ple_blob" {
   name                = "ple-ml-${var.environment}-st-blob"
   location            = var.location
   resource_group_name = var.rg_name
-  subnet_id           = "/subscriptions/3d60da7d-bacf-4c0f-9333-16143cd9da70/resourceGroups/rgTerraformLabs/providers/Microsoft.Network/virtualNetworks/dev-network/subnets/snet-training"
+  subnet_id           = azurerm_subnet.snet-workspace.id
 
   /*
   private_dns_zone_group {
