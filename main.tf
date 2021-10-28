@@ -55,10 +55,11 @@ module "vnet" {
   depends_on = [
     module.nsg
   ]
-  location    = var.location
-  environment = local.environment
-  rg_name     = var.rg_name
-  nsg_id      = module.nsg.id_out
+  location        = var.location
+  environment     = local.environment
+  rg_name         = var.rg_name
+  nsg_id          = module.nsg.id_out
+  storage_account = data.azurerm_storage_account.str_StateStore.name
 }
 
 
@@ -183,3 +184,4 @@ resource "azurerm_machine_learning_workspace" "this" {
   public_network_access_enabled = false
   image_build_compute_name      = var.image_build_compute_name
 }
+

@@ -35,3 +35,9 @@ variable "ml_subnet_address_space" {
   description = "Address space of the ML workspace subnet"
   default     = ["10.0.3.0/24"]
 }
+
+variable "storage_account" {
+  type        = string
+  description = "Storage account to create a PE for"
+}
+
