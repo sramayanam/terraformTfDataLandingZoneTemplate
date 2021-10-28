@@ -3,15 +3,15 @@ resource "azurerm_virtual_network" "main" {
   address_space       = ["10.0.0.0/16"]
   location            = var.location
   resource_group_name = var.rg_name
-  storage_account     = var.storage_account
-  subnet {
-    name           = "subnet1"
-    address_prefix = "10.0.0.0/24"
-    security_group = var.nsg_id
-  }
-
 }
 
+resource "azurerm_subnet" "subnet1" {
+  name                                           = "subnet1"
+  resource_group_name                            = var.rg_name
+  virtual_network_name                           = azurerm_virtual_network.main.name
+  address_prefixes                               = "10.0.0.0/24"
+  enforce_private_link_endpoint_network_policies = false
+}
 
 resource "azurerm_subnet" "snet-training" {
   name                                           = "snet-training"
@@ -51,7 +51,7 @@ resource "azurerm_private_endpoint" "st_ple_blob" {
 
   private_service_connection {
     name                           = "psc-${var.environment}-st"
-    private_connection_resource_id = var.storage_account.id
+    private_connection_resource_id = var.stateStore.id
     subresource_names              = ["blob"]
     is_manual_connection           = false
   }
