@@ -27,7 +27,7 @@ variable "training_subnet_address_space" {
 variable "aks_subnet_address_space" {
   type        = list(string)
   description = "Address space of the aks subnet"
-  default     = ["10.0.2.0/23"]
+  default     = ["10.0.2.0/24"]
 }
 
 variable "ml_subnet_address_space" {
