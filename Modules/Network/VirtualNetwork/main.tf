@@ -3,14 +3,12 @@ resource "azurerm_virtual_network" "main" {
   address_space       = ["10.0.0.0/16"]
   location            = var.location
   resource_group_name = var.rg_name
-}
+  subnet {
+    name           = "subnet1"
+    address_prefix = "10.0.0.0/24"
+    security_group = var.nsg_id
+  }
 
-resource "azurerm_subnet" "subnet1" {
-  name                                           = "subnet1"
-  resource_group_name                            = var.rg_name
-  virtual_network_name                           = azurerm_virtual_network.main.name
-  address_prefixes                               = ["10.0.0.0/24"]
-  enforce_private_link_endpoint_network_policies = false
 }
 
 resource "azurerm_subnet" "snet-training" {
@@ -42,14 +40,14 @@ resource "azurerm_private_endpoint" "st_ple_blob" {
   name                = "ple-ml-${var.environment}-st-blob"
   location            = var.location
   resource_group_name = var.rg_name
-  subnet_id           = azurerm_subnet.snet-workspace.id
+  subnet_id           = "/subscriptions/3d60da7d-bacf-4c0f-9333-16143cd9da70/resourceGroups/rgTerraformLabs/providers/Microsoft.Network/virtualNetworks/dev-network/subnets/subnet1"
 
-/*
+  /*
   private_dns_zone_group {
     name                 = "private-dns-zone-group"
     private_dns_zone_ids = [azurerm_private_dns_zone.dnsstorageblob.id]
   }
-*/
+  */
 
   private_service_connection {
     name                           = "psc-${var.environment}-st"
